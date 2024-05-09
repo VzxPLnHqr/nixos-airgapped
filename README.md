@@ -1,5 +1,7 @@
 ### Airgapped NixOS
 
+# WARNING: this is experimental. DO NOT USE FOR ANYTHING OF VALUE. 
+
 [NixOS](https://nixos.org) is highly configurable and also reproducible. We can 
 use these features to build a bootable image which has all of the stuff we want
 and (hopefully) none of the stuff we do not want, such as:
