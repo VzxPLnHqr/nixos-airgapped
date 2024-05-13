@@ -6,7 +6,7 @@
 use these features to build a bootable image which has all of the stuff we want
 and (hopefully) none of the stuff we do not want, such as:
 
-- [X] enable whatever offline software we want (for QR code scanning and so on)
+- [X] enable whatever **offline** software we want (for QR code scanning and so on)
   - [X] offline version of [iancoleman.io/bip39](https://iancoleman.io/bip39)
   - [ ] offline version of [codex32](https://secretcodex32.com)
 - [X] disable networking at non-kernel level
@@ -37,6 +37,10 @@ Use `nix` to configure and build a custom NixOS image on a machine with internet
 ### Disclaimer
 
 Please do your own research and be sure that this level of (imperfect!) "airgapping" is sufficient for your needs. It may not be.
+
+### Testing in a VM
+1. build the vm: `$ nixos-rebuild build-vm --flake .#nixos-airgapped`
+2. run the vm: `$ ./result/bin/run-nixos-vm`
 
 #### Notes/References
 1. [NixOS Kernel](https://nixos.wiki/wiki/Linux_kernel) - see "Custom configuration" section

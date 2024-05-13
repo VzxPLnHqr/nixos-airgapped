@@ -34,6 +34,12 @@
     networkmanager.enable = lib.mkForce false;
   };
 
+  boot = {
+    tmp.cleanOnBoot = true;
+    # https://www.kernel.org/doc/html/latest/admin-guide/sysctl/kernel.html#unprivileged-bpf-disabled
+    kernel.sysctl = {"kernel.unprivileged_bpf_disabled" = 1;};
+  };
+
   # Disable bluetooth
   hardware.bluetooth.enable = false;
 
@@ -48,7 +54,7 @@
     isNormalUser = true;
     extraGroups = [
                    "wheel" # enable sudo for the user
-                   "video"
+                   "video" # for using webcam for QR code scanning
                   ];
 
     # packages only available to this user
@@ -63,6 +69,12 @@
 
   # see previous note above
   users.users.root.initialHashedPassword = "";
+
+  # allow our user to do sudo things if necessary
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
 
   ## packages available to all users
   environment.systemPackages = with pkgs; [
@@ -84,6 +96,30 @@
     # web browser (for viewing static sites offline)
     firefox
   ];
+
+  # program-specific settings
+  programs = {
+    # Add firefox for running the diceware web app
+    firefox = {
+      enable = true;
+      preferences = {
+        # Disable data reporting confirmation dialogue
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        # Disable welcome tab
+        "browser.aboutwelcome.enabled" = false;
+      };
+      # Make preferences appear as user-defined values
+      preferencesStatus = "user";
+    };
+    # we are offline, so no need for ssh agent to start
+    ssh.startAgent = false;
+
+    # enable some gnupg things (for offline use)
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
