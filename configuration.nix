@@ -1,41 +1,19 @@
 {config, lib, pkgs, ...}: {
 
+  ## a lot of these options and methods for "airgapping" are taken from 
+  ## https://github.com/drduh/YubiKey-Guide/blob/master/flake.nix
+
   imports =
     [ 
       ## Include the results of the hardware scan (if desired).
       # ./hardware-configuration.nix
+
+      ## host some static websites offline with useful tools
+      ## iancolemanBIP39 (https://github.com/iancoleman/bip39)
+      ./modules/iancolemanBIP39.nix
     ];
 
-  ## a lot of these options are taken from 
-  ## https://github.com/drduh/YubiKey-Guide/blob/master/flake.nix#L222
 
-
-  ## airgap our kernel directly
-  ## (commented out for now)
-  /*boot.kernelPatches = [ 
-    {
-      name = "airgapped-config";
-      patch = null; # null if we are only making config changes (below)
-      
-      # attrset of extra configuration parameters without the CONFIG_ prefix
-      # values should generally be lib.kernel.yes: 
-      # lib.kernel.no or lib.kernel.module
-      extraStructuredConfig = {
-        # goal is to remove network functionality but the following seems to break  
-        # NET = lib.mkForce lib.kernel.no;
-
-        # remove radio adaptors
-        # RADIO_ADAPTERS = lib.mkForce lib.kernel.no;
-      };
-
-      # seems to be necessary
-      ignoreConfigErrors = true;                          
-
-      # attrset of extra "features" the kernel is considered to have
-      # (may be queried by other NixOS modules)
-      features.airgapped = true;
-    } 
-  ];*/
 
   # from comment about raw-efi format 
   # see https://github.com/nix-community/nixos-generators?tab=readme-ov-file#format-specific-notes
@@ -102,6 +80,9 @@
 
     # PDF and Markdown viewer
     okular
+
+    # web browser (for viewing static sites offline)
+    firefox
   ];
 
   # Enable the X11 windowing system.

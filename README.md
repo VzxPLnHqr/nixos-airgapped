@@ -7,11 +7,12 @@ use these features to build a bootable image which has all of the stuff we want
 and (hopefully) none of the stuff we do not want, such as:
 
 - [X] enable whatever offline software we want (for QR code scanning and so on)
+  - [X] offline version of [iancoleman.io/bip39](https://iancoleman.io/bip39)
+  - [ ] offline version of [codex32](https://secretcodex32.com)
 - [X] disable networking at non-kernel level
 - [ ] kernel - disable all networking devices (including any wifi/bluetooth)
 - [ ] kernel - disable all audio input/output at kernel level
 - [ ] kernel - disable mounting of any additional devices (no rogue USB sticks allowed!)
-
 
 ### Strategy
 
