@@ -8,9 +8,11 @@
       ## Include the results of the hardware scan (if desired).
       # ./hardware-configuration.nix
 
-      ## host some static websites offline with useful tools
+      ####  host some static websites offline with useful tools
       ## iancolemanBIP39 (https://github.com/iancoleman/bip39)
       ./modules/iancolemanBIP39.nix
+      ## codex32 (https://secretcodex32.com)
+      ./modules/codex32.nix
     ];
 
 

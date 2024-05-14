@@ -21,12 +21,12 @@ in {
   # host the bip39 tool offline
   services.nginx = {
     enable = true;
-    virtualHosts."iancoleman-bip39.local" = {
+    virtualHosts."iancoleman-bip39.offline" = {
       root = "${iancolemanBip39Page}";
     };
   };
 
-  networking.extraHosts = "127.0.0.1 iancoleman-bip39.local";
+  networking.extraHosts = "127.0.0.1 iancoleman-bip39.offline";
 
 
 }
