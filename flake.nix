@@ -8,12 +8,14 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    codex32-website.url = "github:vzxplnhqr/volvelle-website?ref=nix-flake";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-generators }: {
+  outputs = inputs@{ self, nixpkgs, nixos-generators, codex32-website }: {
 
 
-    nixosModules.nixos-airgapped = {pkgs, config, ...}: {
+    nixosModules.nixos-airgapped = {pkgs, config, codex32-website, ...}: {
 
             imports = [ ./configuration.nix ];
 
@@ -25,14 +27,16 @@
     # build a vm by running `nixos-rebuild build-vm --flake .#nixos-airgapped`
     # the vm can be started by running `./result/bin/run-...`
     nixosConfigurations.nixos-airgapped = nixpkgs.lib.nixosSystem {
+      specialArgs = inputs;
       system = "x86_64-linux";
-      modules = [ self.nixosModules.nixos-airgapped ];
+      modules = [ ./configuration.nix ];
     };
 
     # build the iso by running `nix build .#nixos-airgapped-iso`
     packages.x86_64-linux.nixos-airgapped-iso = nixos-generators.nixosGenerate {
+      specialArgs = inputs;
       system = "x86_64-linux";
-      modules = [ self.nixosModules.nixos-airgapped ];
+      modules = [ ./configuration.nix ];
 
       # see different formats here: https://github.com/nix-community/nixos-generators
       # for nixos bootable installer ISO change to "install-iso"

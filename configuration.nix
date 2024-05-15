@@ -97,6 +97,9 @@
 
     # web browser (for viewing static sites offline)
     firefox
+
+    # misc
+    python3
   ];
 
   # program-specific settings
@@ -137,5 +140,13 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "24.05";
+
+  virtualisation.vmVariant = {
+    # following configuration is added only when building VM with build-vm
+    virtualisation = {
+      memorySize =  4096; # Use 4096MiB memory.
+      cores = 3;         
+    };
+  };
 
 }

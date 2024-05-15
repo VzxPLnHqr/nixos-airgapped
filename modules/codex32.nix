@@ -1,38 +1,24 @@
-{ lib, pkgs, config, ... }:
-let
-  codex32-website = pkgs.rustPlatform.buildRustPackage rec {
-    name = "codex32-website";
-    src = pkgs.fetchFromGitHub {
-      owner = "apoelstra";
-      repo = "volvelle-website";
-      rev = "main";
-      hash = "sha256-ZkIFqSE/blcOfqiehY/Wt6HCc2dcLrOTDH7hM72M/n8=";
-    };
-    sourceRoot = "source/volvelle-wasm";
-    cargoSha256 = "beUS0vVAH3nKlQll7cn51U+m8QLKiZcWgh56tC1BDKw=";
-    nativeBuildInputs = with pkgs; [ 
-      git rustc cargo gcc llvmPackages.bintools wasm-pack 
-    ];
-    buildPhase = ''
-      echo "STARTING BUILD"
-      # mkdir -p target/pkg
-      # wasm-pack build --out-dir target/pkg --target no-modules
-      # cargo test
-      wasm-pack build --target no-modules
-      echo "FINISHED BUILD"
-    '';
-  };
-in {
+{ lib, pkgs, config, codex32-website, ... }: {
 
-  # host the bip39 tool offline
+  # host the codex32 website offline
+  #  THIS IS BROKEN
+  #   for some strange reason, nginx does not serve the site up properly
+  #   however, manually running the following *does* seem to work:
+  #
+  #   cd /nix/store/18aakaqqgi2a4dam0zq80v6gkmb1r41k-codex32-website-1.0.0/www
+  #   python3 webserver.py
+  #   # now the site is accessible at http://localhost:9000
+  #
+  #  but why does the below simple nginx site serving out of the same directory
+  #  not work? WHY!!!? 
+
   services.nginx = {
     enable = true;
     virtualHosts."codex32.offline" = {
-      root = "${codex32-website}";
+      root = "${codex32-website}/www";
     };
   };
 
   networking.extraHosts = "127.0.0.1 codex32.offline";
-
 
 }
