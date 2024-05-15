@@ -129,9 +129,16 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   
-  # Enable GNOME
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # Enable desktop environment
+  services.displayManager = {
+    autoLogin.enable = true;
+    autoLogin.user = "user";
+  };
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.xfce = {
+    enable = true;
+    enableScreensaver = false;
+  };
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
