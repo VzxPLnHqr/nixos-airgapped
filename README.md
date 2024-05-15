@@ -8,7 +8,7 @@ and (hopefully) none of the stuff we do not want, such as:
 
 - [X] enable whatever **offline** software we want (for QR code scanning and so on)
   - [X] offline version of [iancoleman.io/bip39](https://iancoleman.io/bip39)
-  - [ ] offline version of [codex32](https://secretcodex32.com)
+  - [X] offline version of [codex32](https://secretcodex32.com) that is currently broken[^broken_codex_website]
 - [X] disable networking at non-kernel level
 - [ ] kernel - disable all networking devices (including any wifi/bluetooth)
 - [ ] kernel - disable all audio input/output at kernel level
@@ -48,3 +48,4 @@ Please do your own research and be sure that this level of (imperfect!) "airgapp
 1. [a thread with some links/resources](https://discourse.nixos.org/t/more-airgap-questions/38748)
 
 [^enable_flakes]: [wiki](https://nixos.wiki/wiki/Flakes) or [tutorial](https://www.tweag.io/blog/2020-05-25-flakes/)
+[^broken_codex_website]: Need to run `python3 webserver.py` inside `/nix/store/18aakaqqgi2a4dam0zq80v6gkmb1r41k-codex32-website-1.0.0/www` and then access at http://localhost:9000 for it to work. Not sure why the nginx static site does not work.
