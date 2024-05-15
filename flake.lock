@@ -7,11 +7,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1715727676,
-        "narHash": "sha256-0mUXBIrUHnCH0CSbsqNLxJGd/0FlsXC2NDSZUfLz5G0=",
+        "lastModified": 1715796957,
+        "narHash": "sha256-fItbkB5mCQ6fQKz4uNXNR1AMzZ8V1e8la+h7jatXaNk=",
         "owner": "vzxplnhqr",
         "repo": "volvelle-website",
-        "rev": "2fe6a8cf1a8334a971c2a98c6ae0ebae19bce6ec",
+        "rev": "ed899e79b8f770ebbdcbdf2a1e37e781db09eb90",
         "type": "github"
       },
       "original": {
