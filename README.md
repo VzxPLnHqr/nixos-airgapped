@@ -12,7 +12,7 @@ and (hopefully) none of the stuff we do not want, such as:
 - [X] disable networking at non-kernel level
 - [ ] kernel - disable all networking devices (including any wifi/bluetooth)
 - [ ] kernel - disable all audio input/output at kernel level
-- [ ] kernel - disable mounting of any additional devices (no rogue USB sticks allowed!)
+- [ ] kernel - (optional) disable mounting of any additional devices (no rogue USB sticks allowed!)
 
 ### Strategy
 
@@ -39,6 +39,8 @@ Use `nix` to configure and build a custom NixOS image on a machine with internet
 Please do your own research and be sure that this level of (imperfect!) "airgapping" is sufficient for your needs. It may not be.
 
 ### Testing in a VM
+If you are on NixOS, you can test things out in a virtual machine:
+1. clone this repo and `cd` into it
 1. build the vm: `$ nixos-rebuild build-vm --flake .#nixos-airgapped`
 2. run the vm: `$ ./result/bin/run-nixos-vm`
 
