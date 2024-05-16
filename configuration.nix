@@ -90,6 +90,7 @@
     pwgen
     
     # Bitcoin wallet software
+    bitcoin
     sparrow
 
     # PDF and Markdown viewer
