@@ -10,10 +10,11 @@ and (hopefully) none of the stuff we do not want, such as:
   - [X] `bitcoin-qt`, `bitcoin-cli`, `bitcoin-tx`, ...
   - [X] offline version of [iancoleman.io/bip39](https://iancoleman.io/bip39)
   - [X] offline version of [codex32](https://secretcodex32.com)
-- [X] disable networking at non-kernel level
+  - [X] offline version of [Sparrow Wallet](https://sparrowwallet.com/)
+- [X] non-kernel - disable networking (including wifi/bluetooth)
+- [X] non-kernel - disable sound
 - [ ] kernel - disable all networking devices (including any wifi/bluetooth)
-- [ ] kernel - disable all audio input/output at kernel level
-- [ ] kernel - (optional) disable mounting of any additional devices (no rogue USB sticks allowed!)
+- [ ] kernel - disable all audio input/output
 
 ### Strategy
 
